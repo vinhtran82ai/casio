@@ -6,7 +6,6 @@
     <title>Casio 580 VNX Emulator</title>
     
     <link rel="manifest" href="./manifest.json">
-    
     <link rel="icon" type="image/png" href="./favicon.ico">
 
     <style>
@@ -15,19 +14,22 @@
             padding: 0;
             background-color: #e0e0e0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden; /* Tránh thanh cuộn thừa */
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-        /* Đảm bảo khung máy tính hiện đẹp */
         #canvas-container {
             position: relative;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            /* Đảm bảo canvas không bị đè */
+            z-index: 1; 
         }
         canvas {
             display: block;
+            max-width: 100%;
+            max-height: 100vh;
         }
     </style>
 </head>
@@ -36,15 +38,19 @@
     <div id="canvas-container">
         </div>
 
+    <script src="https://unpkg.com/comlink/dist/umd/comlink.js"></script>
+    
+    <script src="./simlib.js"></script>
+
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                // Quan trọng: Thêm dấu . trước /service-worker.js
+                // Sửa đường dẫn thành ./service-worker.js
                 navigator.serviceWorker.register('./service-worker.js', { scope: './' })
                 .then(function(registration) {
-                    console.log('ServiceWorker registered successfully with scope: ', registration.scope);
+                    console.log('ServiceWorker đã chạy thành công với scope: ', registration.scope);
                 }, function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
+                    console.log('ServiceWorker thất bại: ', err);
                 });
             });
         }
