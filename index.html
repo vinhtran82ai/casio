@@ -9,49 +9,27 @@
     <link rel="icon" type="image/png" href="./favicon.ico">
 
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #e0e0e0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        #canvas-container {
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            /* Đảm bảo canvas không bị đè */
-            z-index: 1; 
-        }
-        canvas {
-            display: block;
-            max-width: 100%;
-            max-height: 100vh;
-        }
+        body { margin: 0; padding: 0; background-color: #e0e0e0; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        #canvas-container { position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 1; }
+        canvas { display: block; max-width: 100%; max-height: 100vh; }
     </style>
 </head>
 <body>
 
-    <div id="canvas-container">
-        </div>
+    <div id="canvas-container"></div>
 
-    <script src="https://unpkg.com/comlink/dist/umd/comlink.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/localforage@1.10.0/dist/localforage.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/comlink@4.4.1/dist/umd/comlink.min.js"></script>
     
     <script src="./simlib.js"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                // Sửa đường dẫn thành ./service-worker.js
                 navigator.serviceWorker.register('./service-worker.js', { scope: './' })
-                .then(function(registration) {
-                    console.log('ServiceWorker đã chạy thành công với scope: ', registration.scope);
-                }, function(err) {
-                    console.log('ServiceWorker thất bại: ', err);
-                });
+                .then(reg => console.log('SW Registered!', reg.scope))
+                .catch(err => console.log('SW Failed:', err));
             });
         }
     </script>
