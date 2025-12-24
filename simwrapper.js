@@ -514,7 +514,6 @@ Module.onRuntimeInitialized = async _ => {
 
 //importScripts("./comlink.min.js");
 // importScripts('./simlib.js')
-
 class SimWrapper {
 	constructor() {
 		if (_verbose) console.log('SimWrapper: constructor');
