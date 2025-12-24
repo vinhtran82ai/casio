@@ -1,0 +1,17 @@
+{
+  "name": "Web Calc Emulator",
+  "short_name": "WCalc Emu",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/bmp"
+    }
+  ]
+}
+
