@@ -513,7 +513,7 @@ Module.onRuntimeInitialized = async _ => {
 }
 
 //importScripts("./comlink.min.js");
-importScripts('./simlib.js')
+// importScripts('./simlib.js')
 
 class SimWrapper {
 	constructor() {
